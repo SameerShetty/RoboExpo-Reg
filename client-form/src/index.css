@@ -101,21 +101,21 @@ ul {
   background-image: linear-gradient(
       45deg,
       rgba(0, 0, 0, 0.7),
-      rgb(0, 0, 114, 0.7)
+      rgba(0, 0, 114, 0.7)
     ),
     url("../public/imgs/pic.png");
-  /* background-image: url("../public/imgs/pic.png"); */
   object-fit: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100vh;
-  /* background-color: var(--font-color-white); */
   padding: 1rem;
 }
 .form-container {
@@ -123,19 +123,15 @@ ul {
   align-items: center;
   justify-content: space-around;
   width: 90%;
-  /* background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(50); */
   /* box-shadow: var(--box-shadow-light); */
   padding: 1.5rem 0.5rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 2rem;
 }
+
 .register-wrapper .form-container .left-col {
   width: 50%;
   display: flex;
