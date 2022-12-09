@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 function App() {
@@ -20,32 +23,44 @@ function App() {
   }
 
   function handleClick(event) {
-    const userReg = {
-      name: user.name,
-      email: user.email,
-      usn: user.usn,
-      phone: user.phone,
-    };
-
-    axios
-      .post("/registerteam", userReg)
-      .then((response) => {
-        if (response.status === 200) alert("Thank you for registering !!!");
-        setUser({
-          name: "",
-          email: "",
-          usn: "",
-          phone: "",
+    if (user.name && user.email && user.usn && user.phone) {
+      const userReg = {
+        name: user.name,
+        email: user.email,
+        usn: user.usn,
+        phone: user.phone,
+      };
+      axios
+        .post("/registerteam", userReg)
+        .then((response) => {
+          if (response.status === 200)
+            toast.success("Thank you for registering !!!");
+          setUser({ name: "", email: "", usn: "", phone: "" });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    } else {
+      toast.error("Please fill all the details !!!");
+    }
+
     event.preventDefault();
   }
 
   return (
     <div className="register-wrapper" style={{ backgroundColor: "#f0f5f9" }}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="form-container">
         <div className="left-col">
           <div className="event-details">

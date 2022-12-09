@@ -35,28 +35,32 @@ const particiSchema = new mongoose.Schema({
 const user = mongoose.model("user", particiSchema);
 
 app.post("/registerteam", function (req, res) {
-  const gp = new user({
-    name: req.body.name,
-    email: req.body.email,
-    usn: req.body.usn,
-    phone: req.body.phone,
-  });
-  gp.save((err) => {
-    if (err) {
-      console.log(err);
-    } else res.sendStatus(200);
-  });
+  if (req.body.name && req.body.email && req.body.usn && req.body.phone) {
+    const gp = new user({
+      name: req.body.name,
+      email: req.body.email,
+      usn: req.body.usn,
+      phone: req.body.phone,
+    });
+    gp.save((err) => {
+      if (err) {
+        console.log(err);
+      } else res.sendStatus(200);
+    });
+  } else {
+    res.status(401).json({ message: "Please fill all details" });
+  }
 });
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("client-form/build"));
-//   }
-//   app.use(express.static("client-form/build"));
-//   app.get("/", (req, res) => {
-//     res.sendFile(__dirname + "/client-form/build/index.html");
-//   });
-//   app.get("*", (req, res) => {
-//     res.sendFile(__dirname + "/client-form/build/index.html");
-//   });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client-form/build"));
+}
+app.use(express.static("client-form/build"));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/client-form/build/index.html");
+});
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/client-form/build/index.html");
+});
 app.listen(PORT, () => {
   console.log("Server is up and running on the port " + PORT);
 });
