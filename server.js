@@ -52,9 +52,7 @@ app.post("/registerteam", function (req, res) {
     res.status(401).json({ message: "Please fill all details" });
   }
 });
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client-form/build"));
-// }
+
 app.use(express.static("./client-form/build"));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "./client-form/build/index.html"));
