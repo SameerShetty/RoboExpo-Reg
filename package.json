@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "cd client-form && npm run build",
+    "install-client": "cd client-form && npm install",
+    "start": "node server.js",
+    "client": "cd client-form && npm start"
   },
   "author": "",
   "license": "ISC",
