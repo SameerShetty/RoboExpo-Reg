@@ -53,12 +53,12 @@ app.post("/registerteam", function (req, res) {
   }
 });
 
-app.use(express.static("./client-form/build"));
+app.use(express.static("./client/build"));
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "./client-form/build/index.html"));
+  res.sendFile(path.join(__dirname + "./client/build/index.html"));
 });
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "./client-form/build/index.html"));
+  res.sendFile(path.join(__dirname + "./client/build/index.html"));
 });
 app.listen(PORT, () => {
   console.log("Server is up and running on the port " + PORT);
