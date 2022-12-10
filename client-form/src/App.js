@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loader from "./Loader";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 function App() {
+  const [isload, setload] = useState(true);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -21,6 +23,11 @@ function App() {
       };
     });
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setload(false);
+    }, 2500);
+  }, []);
 
   function handleClick(event) {
     if (user.name && user.email && user.usn && user.phone) {
@@ -49,6 +56,9 @@ function App() {
 
   return (
     <div className="register-wrapper" style={{ backgroundColor: "#f0f5f9" }}>
+      <div style={{ display: isload ? "block" : "none" }}>
+        <Loader />
+      </div>
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -67,8 +77,8 @@ function App() {
             <img src="../imgs/pic.png" alt="pic" />
             <h1> ROBOEXPO</h1>
             <p>Venue : Birla Auditorium</p>
-            <p>Date : 17/12/2022</p>
-            <p>Time : 2pm </p>
+            <p>Date : 17-12-2022 </p>
+            <p>Time : 2 pm </p>
           </div>
         </div>
         <div className="details">
